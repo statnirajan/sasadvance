@@ -5,6 +5,7 @@ DBMS = xlsx out = score_data ;
 run;
 
 /*get obs/rows with gender = 'm'*/
+
 proc sql;
    create table scoredata0 as
    select stu_id,
@@ -26,9 +27,7 @@ run;
 
 proc print data = scoredata1;
 title ' data from data step';
-run;
-
-/*Both way, you would get the same result */
+run; /*Both way, you would get the same result */
 
 
 /*SELECT statement & its clauses*/
@@ -43,14 +42,12 @@ quit;
 proc print data = scoredata0;
 run;
 
-/*The following query uses the MEAN function to list the average 
-of score1 of each gender. 
-The GROUP BY clause groups the students by gender, 
-and the ORDER BY clause puts the values of gender in 
-alphabetical order*/
+/* The following query uses the MEAN function to list the average 
+of score1 of each gender.  The GROUP BY clause groups the students by gender, 
+and the ORDER BY clause puts the values of gender in  alphabetical order */
+
 proc sql;
    create table scoredata1 as
-   
    select *, 
    mean(score1)as score1_ave,
    mean(score2)as score2_ave,
@@ -63,8 +60,7 @@ quit;
 proc print data = scoredata1;
 run;
 
-/*the having clause restricts the groups to include only 
-gender = ‘f’ (female) in the query's results*/
+/*The having clause restricts the groups to include only gender = ‘f’ (female) in the query's results*/
 proc sql;
    create table scoredata2 as
    
@@ -109,8 +105,6 @@ quit;
 
 proc sql;
    describe table score_data;
-
-
 
 /*create columns*/
 
